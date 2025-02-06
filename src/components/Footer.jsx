@@ -5,12 +5,12 @@ import {FaLinkedin, FaInstagram, FaFacebookF, FaPinterest, FaTwitter } from 'rea
 function Footer(){
     return (
         <>
-            <div className="flex shadow">
-                <div className="flex items-center px-40">
+            <div className="md:flex shadow py-5">
+                <div className="flex items-center md:px-40 sm:justify-center">
                     <img src={Logo} alt="logo" className="w-28"/>
-                    <span className="font-bold text-3xl">Smiggy</span>
+                    <span className="font-bold md:text-3xl text-2xl">Smiggy</span>
                 </div>
-                <div className="flex gap-20 align-middle text-gray-700 leading-8">
+                <div className="md:flex gap-20 align-middle text-gray-700 leading-8 sm:px-2 flex flex-wrap">
                     <div>
                         <ul>
                             <li className="font-semibold text-black">Company</li>

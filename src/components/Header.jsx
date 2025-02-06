@@ -4,7 +4,7 @@ import Logo from'../assets/smiggy.png'
 function Header(){
     return(
         <>
-            <div className="flex justify-between shadow-md items-center px-20 py-4">
+            <div className="flex justify-between shadow-md items-center md:px-20 py-4">
                 <a className="flex items-center" href="#">
                     <img src={Logo} alt="logo" className="w-16" /><span className="font-semibold text-xl">Smiggy</span>
                 </a>
