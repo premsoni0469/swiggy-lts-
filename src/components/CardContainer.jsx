@@ -5,6 +5,16 @@ import RestaurantCard from "./RestaurantCard";
 function CardContainer(){
 
     const [restaurantList, setRestaurantList] = useState(restaurantData);
+    // Here, restaurantList is a state-variable, and it is initially assigned the value, i.e. restaurantData (Array of objects) by passing it in useState(). It actually holds data of array of restaurants, which is later on used in rendering the restaurants.
+    
+    // setRestaurantList is a method, that is used to update the state-variable. State-variable can be only updated by this method only.
+    
+    // So, for using useState hook, we require:
+    // 1. state-variable
+    // 2. a method for updating the state-variable &
+    // 3. initial value of the state-variable [passed in by using method useState()]
+    
+
 
     // let restaurantData = [
     //     {
@@ -76,8 +86,9 @@ function CardContainer(){
         const filteredData = restaurantList.filter((restaurant) => { // In this line, restaurant is an object which will iterate through the whole array of restaurants
             return restaurant.rating >= 4.5;
         })
-        console.log(filteredData);
-        setRestaurantList(filteredData)
+        setRestaurantList(filteredData);
+        console.log("Filtered Data:", filteredData);
+        console.log("Restaurant List:", restaurantList);
         
     }
 
@@ -94,7 +105,7 @@ function CardContainer(){
 
                 </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:px-2 lg:px-56 px-36 py-3">
+            <div className="flex flex-wrap justify-center gap-4 md:px-2 py-3">
                {
                 restaurantList.map((restaurant) => {       // restaurant is an object here
                     return <RestaurantCard 
