@@ -76,8 +76,8 @@ function CardContainer(){
         const filteredData = restaurantList.filter((restaurant) => { // In this line, restaurant is an object which will iterate through the whole array of restaurants
             return restaurant.rating >= 4.5;
         })
-        setRestaurantList(filteredData)
         console.log(filteredData);
+        setRestaurantList(filteredData)
         
     }
 
