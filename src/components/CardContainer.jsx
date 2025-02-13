@@ -4,7 +4,7 @@ import RestaurantCard from "./RestaurantCard";
 
 function CardContainer(){
 
-    const [restaurantList] = useState(restaurantData);
+    const [restaurantList, setRestaurantList] = useState(restaurantData);
 
     // let restaurantData = [
     //     {
@@ -76,6 +76,7 @@ function CardContainer(){
         const filteredData = restaurantList.filter((restaurant) => { // In this line, restaurant is an object which will iterate through the whole array of restaurants
             return restaurant.rating >= 4.5;
         })
+        setRestaurantList(filteredData)
         console.log(filteredData);
         
     }
@@ -86,9 +87,9 @@ function CardContainer(){
             <div className="flex justify-around py-5">
                 <span className="font-semibold text-xl">Filters:</span>
                 <div className="flex gap-4">
-                    <button className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 transition-colors" onClick={filterRatings}>Top rated</button>
-                    <button className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 transition-colors">Nearby</button>
-                    <button className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 transition-colors">Budget Friendly</button>
+                    <button className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors" onClick={filterRatings}>Top rated</button>
+                    <button className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors">Nearby</button>
+                    <button className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors">Budget Friendly</button>
 
 
                 </div>
