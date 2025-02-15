@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { restaurantData } from '../constants/restaurant';
+import { restaurantData, API_URL } from '../constants/restaurant';
 import RestaurantCard from "./RestaurantCard";
 
 function CardContainer(){
@@ -91,6 +91,19 @@ function CardContainer(){
         console.log("Restaurant List:", restaurantList);
         
     }
+
+    const getRestaurantDatafromAPI = async () =>{
+        const response = await fetch(API_URL);
+        const data = await response.json();
+
+        // console.log("JSON: ", data);
+        console.log(data.data.cards[1].card.card.header.title,":",data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+        console.log(data.data.cards[0].card.card.header.title,":",data.data.cards[0].card.card.gridElements.infoWithStyle.info)
+        // console.log("")
+
+    }
+
+    getRestaurantDatafromAPI();
 
 
     return(
