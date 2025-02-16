@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { restaurantData, API_URL } from '../constants/restaurant';
+import { useEffect, useState } from 'react'
+import { API_URL } from '../constants/config';
 import RestaurantCard from "./RestaurantCard";
 
 function CardContainer(){
 
-    const [restaurantList, setRestaurantList] = useState(restaurantData);
+    const [restaurantList, setRestaurantList] = useState([]);
     // Here, restaurantList is a state-variable, and it is initially assigned the value, i.e. restaurantData (Array of objects) by passing it in useState(). It actually holds data of array of restaurants, which is later on used in rendering the restaurants.
     
     // setRestaurantList is a method, that is used to update the state-variable. State-variable can be only updated by this method only.
@@ -82,28 +82,42 @@ function CardContainer(){
     // Shifted the data into folder named constants. This same approach we will use to store the base URL of an API. This method is useful in scanarios where we have called the API URL multiple times, and if there is cenrtain change in it, we will only need to change the base URL in constants folder, and it will get updated everywhere else it is called.
 
 
+    useEffect(()=>{
+        const getRestaurantDatafromAPI = async () =>{
+            try{
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                // console.log("JSON: ", data);
+                // console.log(data?.data?.cards[1]?.card?.card?.header?.title,":",data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+                // console.log(data?.data?.cards[0]?.card?.card?.header?.title,":",data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
+                // console.log("")
+                const restaurantData = data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+                // console.log(restaurantData);
+                
+                setRestaurantList(restaurantData);
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        getRestaurantDatafromAPI(); 
+    }, [])
+
+
     let filterRatings = () => {
         const filteredData = restaurantList.filter((restaurant) => { // In this line, restaurant is an object which will iterate through the whole array of restaurants
-            return restaurant.rating >= 4.5;
+            return restaurant?.info?.avgRating >= 4.5;
         })
         setRestaurantList(filteredData);
         console.log("Filtered Data:", filteredData);
-        console.log("Restaurant List:", restaurantList);
+        // console.log("Restaurant List:", restaurantList);
         
     }
 
-    const getRestaurantDatafromAPI = async () =>{
-        const response = await fetch(API_URL);
-        const data = await response.json();
+    
 
-        // console.log("JSON: ", data);
-        console.log(data.data.cards[1].card.card.header.title,":",data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
-        console.log(data.data.cards[0].card.card.header.title,":",data.data.cards[0].card.card.gridElements.infoWithStyle.info)
-        // console.log("")
-
-    }
-
-    getRestaurantDatafromAPI();
+    // getRestaurantDatafromAPI();
 
 
     return(
@@ -122,7 +136,7 @@ function CardContainer(){
                {
                 restaurantList.map((restaurant) => {       // restaurant is an object here
                     return <RestaurantCard 
-                    {...restaurant} // using spread operator
+                    {...restaurant.info} // using spread operator
 
                     
                     // name={restaurant.name}  // Remember, the property name should be the same as the one present in the RestaurantCard Component
