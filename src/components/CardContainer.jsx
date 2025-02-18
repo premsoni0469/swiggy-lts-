@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { API_URL } from '../constants/config';
 import RestaurantCard from "./RestaurantCard";
+import ShimmerRestaurantCard from './ShimmerRestaurantCard';
 
 function CardContainer(){
 
@@ -132,8 +133,17 @@ function CardContainer(){
 
                 </div>
             </div>
+                
             <div className="flex flex-wrap justify-center gap-4 md:px-2 py-3">
-               {
+                {
+                    // This whole fragment of code, ie conditional rendering is enclosed inside {} since it is a piece of JavaScript, and we know that in JSX, if we need to write JS, we enclose it inside {}
+                    // Now we will be doing conditional rendering, means we will display Shimmer UI until our data is being fetched, so as to avoid user seeing only blank white screen, which ruins UX.
+                    (restaurantList.length == 0) ? (<ShimmerRestaurantCard />) : 
+                                                   (restaurantList.map((restaurant) => {
+                                                        return <RestaurantCard {...restaurant.info}/>
+                                                   })) 
+                }
+               {/* {
                 restaurantList.map((restaurant) => {       // restaurant is an object here
                     return <RestaurantCard 
                     {...restaurant.info} // using spread operator
@@ -149,9 +159,9 @@ function CardContainer(){
 
                     />
                 })
-               }
+               } */}
                
-               
+               {/* <ShimmerRestaurantCard /> */}
                
                
                 {/* <RestaurantCard 
