@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { API_URL } from '../constants/config';
 import RestaurantCard from "./RestaurantCard";
+import FoodItemsCarousel from './FoodItemsCarousel';
 import ShimmerRestaurantCard from './ShimmerRestaurantCard';
 
 function CardContainer(){
@@ -133,7 +134,17 @@ function CardContainer(){
 
                 </div>
             </div>
-                
+            {/* <div className='font-bold text-xl mx-16 lg:mx-36 md:mx-24 pb-2'>
+                <p>What's on your mind?</p>
+            </div>
+            <div className='px-32'>
+                <FoodItemsCarousel />
+            </div> */}
+
+
+            <div className='font-bold text-xl mx-16 lg:mx-36 md:mx-24 pb-2'>
+                <p>Top restaurant chains:</p>
+            </div>
             <div className="flex flex-wrap justify-center gap-4 md:px-2 py-3">
                 {
                     // This whole fragment of code, ie conditional rendering is enclosed inside {} since it is a piece of JavaScript, and we know that in JSX, if we need to write JS, we enclose it inside {}
