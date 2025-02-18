@@ -138,7 +138,7 @@ function CardContainer(){
                 {
                     // This whole fragment of code, ie conditional rendering is enclosed inside {} since it is a piece of JavaScript, and we know that in JSX, if we need to write JS, we enclose it inside {}
                     // Now we will be doing conditional rendering, means we will display Shimmer UI until our data is being fetched, so as to avoid user seeing only blank white screen, which ruins UX.
-                    (restaurantList.length == 0) ? (<ShimmerRestaurantCard />) : 
+                    (restaurantList.length === 0) ? (<ShimmerRestaurantCard />) : 
                                                    (restaurantList.map((restaurant) => {
                                                         return <RestaurantCard {...restaurant.info}/>
                                                    })) 
