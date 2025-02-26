@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { API_URL } from "../constants/config";
 import RestaurantCard from "./RestaurantCard";
 import FoodItemsCarousel from "./FoodItemsCarousel";
@@ -82,6 +82,9 @@ function CardContainer() {
 
   // Shifted the data into folder named constants. This same approach we will use to store the base URL of an API. This method is useful in scanarios where we have called the API URL multiple times, and if there is cenrtain change in it, we will only need to change the base URL in constants folder, and it will get updated everywhere else it is called.
 
+  const [restaurantListForSearch, setRestaurantListForSearch] = useState("");
+  // This state variable we have created to store the whole restaurantList after searchText is entered, so that our main restaurantList isn't tampered and subsequent searching works.
+
   const [searchText, setSearchtext] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -106,6 +109,7 @@ function CardContainer() {
           // console.log(restaurantData);
 
           setRestaurantList(restaurantData);
+          setRestaurantListForSearch(restaurantData);
         } else {
           console.log("Error code: ", response.status); // prints status code of response, like 400, 401, 403, 404, etc
           // throw new Error("Something went wrong!")  // this block reaches the nearest catch block and throws the following error.
@@ -133,9 +137,9 @@ function CardContainer() {
     getRestaurantDatafromAPI();
   }, []);
 
-    let handleSearchText = (val) => {
-        setSearchtext(val)
-    }
+  let handleSearchText = (val) => {
+    setSearchtext(val);
+  };
 
   let filterRatings = () => {
     const filteredData = restaurantList.filter((restaurant) => {
@@ -148,9 +152,22 @@ function CardContainer() {
   };
 
   let handleSearch = () => {
-    const searchRes = restaurantList.filter((restaurant) => (restaurant?.info?.name.includes(searchText)))
-    setRestaurantList(searchRes)
-  }
+    const searchRes = restaurantListForSearch.filter((restaurant) =>
+      restaurant?.info?.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    // Here, we converted text to lower case, to make the searh functionality case insensitive. Here, we convert the searchText to lower case and also the restaurant name to lower case for comparison purpose, not converted in lower case in the UI.
+
+    // Here, we are applying filter on restaurantListForSearch, and that data, which is stored in searchRes, we pass it to setRestaurantList method, to update restaurantList based on searchText. In this way, we have a copy of all the restautants stored in restaurantList, and the value of restaurantListForSearch only hanges, and that only is displayed in the UI, by setting that value for restaurantList. It doesn't empty our restaurantList, which happened in the initial phase.
+
+    !searchRes // means if searchRes is null
+      ? setRestaurantList(null)
+      : setRestaurantList(searchRes); // Here, we are checking if searchRes length is zero, we set the restaurantList to null, else we set it according to the searchRes if searchRes is not empty, ie we have matching data
+
+    console.log("searchRes: ", searchRes);
+    // console.log("restaurantList: ", restaurantList)
+      
+  };
 
   if (errorMessage) {
     // means if there is an errorMessage, then only this block will run.
@@ -168,9 +185,13 @@ function CardContainer() {
           <input
             type="text"
             className="border rounded-3xl px-4 pr-10 w-full h-9 bg-gray-50 focus:outline focus:outline-gray-200"
-            value={searchText} onChange={(e) => handleSearchText(e.target.value)}
+            value={searchText}
+            onChange={(e) => handleSearchText(e.target.value)}
           />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 text-2xl" onClick={handleSearch}>
+          <button
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-2xl"
+            onClick={handleSearch}
+          >
             <IoIosSearch />
           </button>
         </div>
@@ -207,13 +228,21 @@ function CardContainer() {
           // This whole fragment of code, ie conditional rendering is enclosed inside {} since it is a piece of JavaScript, and we know that in JSX, if we need to write JS, we enclose it inside {}
           // Now we will be doing conditional rendering, means we will display Shimmer UI until our data is being fetched, so as to avoid user seeing only blank white screen, which ruins UX.
           restaurantList.length === 0 ? (
-            <ShimmerRestaurantCard />
-          ) : (
+            restaurantListForSearch.length === 0 ? (
+              <ShimmerRestaurantCard />
+            ) : (
+              <h1>
+                There are no restaurants matching "{searchText}"
+              </h1>
+            )
+          ) : 
+          (
             restaurantList.map((restaurant) => {
               return <RestaurantCard {...restaurant.info} />;
             })
           )
         }
+
         {/* {
                 restaurantList.map((restaurant) => {       // restaurant is an object here
                     return <RestaurantCard 
