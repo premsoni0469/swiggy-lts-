@@ -13,15 +13,6 @@ function RestaurantCard({name, avgRating, sla, cuisines, locality, cloudinaryIma
                     {/* <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/7/16/c08ef470-8561-436d-81ec-b119dfc997fa_9862.jpg" alt="Pizza" className='w-full h-full object-cover rounded-[20px]' /> */}
                     <img src={IMG_URL + cloudinaryImageId} alt="Pizza" className='w-full h-full object-cover rounded-[20px]' />
                 </div>
-                {/* <div className='text-[18px] pt-2'>
-                    <p className='font-bold px-2'>{props.name}</p>
-                    <div className='flex font-semibold gap-2'> 
-                        <p>⭐ {props.rating}</p>
-                        <p>•</p>
-                        <p>{props.deliveryTime}</p>
-                    </div>
-                    <p className='text-gray-600 px-2'>{props.cuisines}</p>
-                    <p className='text-gray-600 px-2'>{props.location}</p> */}
                 <div className='text-[18px] pt-2'>
                     <p className='font-bold px-2'>{name}</p>
                     <div className='flex font-semibold gap-2'> 

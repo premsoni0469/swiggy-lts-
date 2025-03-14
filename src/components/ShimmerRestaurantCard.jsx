@@ -1,7 +1,8 @@
 function ShimmerRestaurantCard() {
-    return new Array(20).fill(0).map(() => {
+    return new Array(20).fill(0).map((card, index) => {
         return (
-            <div className="w-[300px] border py-3 px-3 rounded-[30px]">
+            <div key = {index} className="w-[300px] border py-3 px-3 rounded-[30px]">  
+            {/* Here, we are using index as a key since we don't have anything to fetch keys for a shimmer card. */}
                 <div className="w-[300px] md:max-w-[275px] h-[150px]">
                     <div className="w-[275px] h-full object-cover bg-gray-200 animate-pulse rounded-[20px]"/>
                 </div>
