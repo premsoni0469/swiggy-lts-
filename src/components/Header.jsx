@@ -1,18 +1,19 @@
 import React from "react";
 import Logo from'../assets/smiggy.png'
+import { Link } from "react-router";
 
 function Header(){
     return(
         <>
             <div className="flex justify-between shadow-md items-center md:px-20 py-4">
-                <a className="flex items-center" href="#">
+                <Link className="flex items-center" to = "/">
                     <img src={Logo} alt="logo" className="w-16" /><span className="font-bold text-2xl">Smiggy</span>
-                </a>
+                </Link>
                 <div className="flex gap-7 font-medium">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Cart</a>
+                    <Link to="/">Home</Link>
+                    <Link to="about">About</Link>
+                    <Link to="contact">Contact Us</Link>
+                    <Link to="cart">Cart</Link>
                 </div>
             </div>
         </>
