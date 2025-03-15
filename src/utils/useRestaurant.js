@@ -71,6 +71,14 @@ const useRestaurant = () => {
     restaurantListForSearch: restaurantListForSearch,
 
     errorMessage: errorMessage,
+
+    // returning the methods to update the state variables, you can name the key anything.
+
+    setRestaurantList : setRestaurantList,
+
+    setRestaurantListForSearch : setRestaurantListForSearch,
+
+    setErrorMessage : setErrorMessage
   };
   // Now since this is a function, it must return something. And we don't know exactly what to return, so we are creating an object & returning that object as a result. this also fulfills the condition, Hooks return some value
 

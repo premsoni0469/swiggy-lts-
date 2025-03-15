@@ -5,22 +5,16 @@ import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
 import { MdError } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
 import useRestaurant from "../utils/useRestaurant";
+import SearchBar from "./SearchBar";
 
 function CardContainer() {
 
-  const restaurantData = useRestaurant();
-  console.log("restaurantdata from custom hook", restaurantData)
+  let {restaurantList, restaurantListForSearch, errorMessage, setRestaurantList} = useRestaurant();
 
   // Shifted the data into folder named constants. This same approach we will use to store the base URL of an API. This method is useful in scanarios where we have called the API URL multiple times, and if there is cenrtain change in it, we will only need to change the base URL in constants folder, and it will get updated everywhere else it is called.
 
-  const [searchText, setSearchtext] = useState("");
-
-  let handleSearchText = (val) => {
-    setSearchtext(val);
-  };
-
   let filterRatings = () => {
-    const filteredData = restaurantData?.restaurantList.filter((restaurant) => {
+    const filteredData = restaurantList.filter((restaurant) => {
       // In this line, restaurant is an object which will iterate through the whole array of restaurants
       return restaurant?.info?.avgRating >= 4.5;
     });
@@ -29,25 +23,7 @@ function CardContainer() {
     // console.log("Restaurant List:", restaurantList);
   };
 
-  let handleSearch = () => {
-    const searchRes = restaurantListForSearch?.restaurantListForSearch.filter((restaurant) =>
-      restaurant?.info?.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-
-    // Here, we converted text to lower case, to make the searh functionality case insensitive. Here, we convert the searchText to lower case and also the restaurant name to lower case for comparison purpose, not converted in lower case in the UI.
-
-    // Here, we are applying filter on restaurantListForSearch, and that data, which is stored in searchRes, we pass it to setRestaurantList method, to update restaurantList based on searchText. In this way, we have a copy of all the restautants stored in restaurantList, and the value of restaurantListForSearch only hanges, and that only is displayed in the UI, by setting that value for restaurantList. It doesn't empty our restaurantList, which happened in the initial phase.
-
-    !searchRes // means if searchRes is null
-      ? setRestaurantList(null)
-      : setRestaurantList(searchRes); // Here, we are checking if searchRes length is zero, we set the restaurantList to null, else we set it according to the searchRes if searchRes is not empty, ie we have matching data
-
-    console.log("searchRes: ", searchRes);
-    // console.log("restaurantList: ", restaurantList)
-      
-  };
-
-  if (restaurantData?.errorMessage) {
+  if (errorMessage) {
     // means if there is an errorMessage, then only this block will run.
     return (
       <div className="flex items-center justify-center h-96 m-6 rounded-xl text-2xl font-semibold text-red-200 bg-[#dc143c]">
@@ -58,22 +34,8 @@ function CardContainer() {
 
   return (
     <>
-      <div className="py-5 mx-auto flex items-center justify-center">
-        <div className="relative w-full max-w-xs">
-          <input
-            type="text"
-            className="border rounded-3xl px-4 pr-10 w-full h-9 bg-gray-50 focus:outline focus:outline-gray-200"
-            value={searchText}
-            onChange={(e) => handleSearchText(e.target.value)}
-          />
-          <button
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-2xl"
-            onClick={handleSearch}
-          >
-            <IoIosSearch />
-          </button>
-        </div>
-      </div>
+      <SearchBar resListForSearch={restaurantListForSearch} setResList={setRestaurantList}/>
+      
       <div className="flex justify-around py-5 px-14">
         <span className="font-semibold text-xl">Filters:</span>
         <div className="flex gap-4">
@@ -105,8 +67,8 @@ function CardContainer() {
         {
           // This whole fragment of code, ie conditional rendering is enclosed inside {} since it is a piece of JavaScript, and we know that in JSX, if we need to write JS, we enclose it inside {}
           // Now we will be doing conditional rendering, means we will display Shimmer UI until our data is being fetched, so as to avoid user seeing only blank white screen, which ruins UX.
-          restaurantData?.restaurantList.length === 0 ? (
-            restaurantData?.restaurantListForSearch.length === 0 ? (
+          restaurantList.length === 0 ? (
+            restaurantListForSearch.length === 0 ? (
               <ShimmerRestaurantCard />
             ) : (
               <h1>
@@ -115,7 +77,7 @@ function CardContainer() {
             )
           ) : 
           (
-            restaurantData?.restaurantList.map((restaurant) => {
+            restaurantList.map((restaurant) => {
               return <RestaurantCard {...restaurant.info}  key = {restaurant?.info?.id}/>;
             })
           )
