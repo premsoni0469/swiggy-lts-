@@ -6,9 +6,9 @@ function Header(){
         <>
             <div className="flex justify-between shadow-md items-center md:px-20 py-4">
                 <a className="flex items-center" href="#">
-                    <img src={Logo} alt="logo" className="w-16" /><span className="font-semibold text-xl">Smiggy</span>
+                    <img src={Logo} alt="logo" className="w-16" /><span className="font-bold text-[1.7rem]">Smiggy</span>
                 </a>
-                <div className="flex gap-7">
+                <div className="flex gap-7 font-medium">
                     <a href="#">Home</a>
                     <a href="#">About Us</a>
                     <a href="#">Contact Us</a>

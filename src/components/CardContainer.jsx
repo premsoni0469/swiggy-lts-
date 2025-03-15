@@ -35,7 +35,7 @@ function CardContainer() {
   return (
     <>
       <SearchBar resListForSearch={restaurantListForSearch} setResList={setRestaurantList}/>
-      
+
       <div className="flex justify-around py-5 px-14">
         <span className="font-semibold text-xl">Filters:</span>
         <div className="flex gap-4">
@@ -82,24 +82,6 @@ function CardContainer() {
             })
           )
         }
-
-        {/* {
-                restaurantList.map((restaurant) => {       // restaurant is an object here
-                    return <RestaurantCard 
-                    {...restaurant.info} // using spread operator
-
-                    
-                    // name={restaurant.name}  // Remember, the property name should be the same as the one present in the RestaurantCard Component
-                    // rating={restaurant.rating}
-                    // deliveryTime={restaurant.deliveryTime}
-                    // cuisines={restaurant.cuisines}
-                    // location={restaurant.location} // The same things can be written as location = {restaurant["location"]}. This thing will be more helpful in cases where the key in our data is not a proper string, i.e. it starts from a specil character, like @psp. We can't write restaurant.@psp, it will give an error, instead we can write as restaurant["@psp"].    
-
-                    // You can also change the order of these 5 properties, but it won't affect the data, means where is should be displayed, it will, but the only differemce will be the order in which we write in the code.
-
-                    />
-                })
-               } */}
       </div>
     </>
   );
