@@ -9,6 +9,8 @@ import SearchBar from "./SearchBar";
 
 function CardContainer() {
 
+  const [searchText, setSearchText] = useState("");
+
   let {restaurantList, restaurantListForSearch, errorMessage, setRestaurantList} = useRestaurant();
 
   // Shifted the data into folder named constants. This same approach we will use to store the base URL of an API. This method is useful in scanarios where we have called the API URL multiple times, and if there is cenrtain change in it, we will only need to change the base URL in constants folder, and it will get updated everywhere else it is called.
@@ -34,7 +36,7 @@ function CardContainer() {
 
   return (
     <>
-      <SearchBar resListForSearch={restaurantListForSearch} setResList={setRestaurantList}/>
+      <SearchBar resListForSearch={restaurantListForSearch} setResList={setRestaurantList} text={searchText} updateText={setSearchText}/>
 
       <div className="flex justify-around py-5 px-14">
         <span className="font-semibold text-xl">Filters:</span>
@@ -53,12 +55,9 @@ function CardContainer() {
           </button>
         </div>
       </div>
-      <div className='font-bold text-xl mx-16 lg:mx-36 md:mx-24 pb-2'>
-                <p>What's on your mind?</p>
-            </div>
-            <div className='px-32'>
-                <FoodItemsCarousel />
-            </div>
+      <div>
+        <FoodItemsCarousel />
+      </div>
 
       <div className="font-bold text-xl mx-16 lg:mx-36 md:mx-24 pb-2 mt-3">
         <p>Top restaurant chains:</p>
