@@ -40,6 +40,11 @@ const SearchBar = ({ resListForSearch, setResList, text, updateText }) => {
           className="border-2 border-gray-300 rounded-3xl px-4 pr-10 w-full h-10 bg-gray-50 focus:outline focus:outline-gray-200"
           value={text}
           onChange={(e) => handleSearchText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
         />
         <button
           className="absolute right-3 top-1/2 -translate-y-1/2 text-2xl"

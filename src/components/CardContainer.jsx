@@ -10,6 +10,7 @@ import SearchBar from "./SearchBar";
 function CardContainer() {
 
   const [searchText, setSearchText] = useState("");
+  const [activeButton, setActiveButton] = useState(null); // State to manage active button
 
   let {restaurantList, restaurantListForSearch, errorMessage, setRestaurantList} = useRestaurant();
 
@@ -42,15 +43,43 @@ function CardContainer() {
         <span className="font-semibold text-xl">Filters:</span>
         <div className="flex gap-4">
           <button
-            className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors"
-            onClick={filterRatings}
+            className={`bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors ${activeButton === 'topRated' ? 'bg-gray-300 text-gray-700' : ''}`}
+            onClick={() => {
+              if (activeButton === 'topRated') {
+                setActiveButton(null); // Deselect if already active
+                setRestaurantList(restaurantListForSearch);
+              } else {
+                setActiveButton('topRated'); // Select if not active
+                filterRatings();
+              }
+            }}
           >
             Top rated
           </button>
-          <button className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors">
+          <button
+            className={`bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors ${activeButton === 'nearby' ? 'bg-gray-300 text-gray-700' : ''}`}
+            onClick={() => {
+              if (activeButton === 'nearby') {
+                setActiveButton(null); // Deselect if already active
+              } else {
+                setActiveButton('nearby'); // Select if not active
+                filterNearby();
+              }
+            }}
+          >
             Nearby
           </button>
-          <button className="bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors">
+          <button
+            className={`bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors ${activeButton === 'budgetFriendly' ? 'bg-gray-300 text-gray-700' : ''}`}
+            onClick={() => {
+              if (activeButton === 'budgetFriendly') {
+                setActiveButton(null); // Deselect if already active
+              } else {
+                setActiveButton('budgetFriendly'); // Select if not active
+                filterBudgetFriendly();
+              }
+            }}
+          >
             Budget Friendly
           </button>
         </div>
