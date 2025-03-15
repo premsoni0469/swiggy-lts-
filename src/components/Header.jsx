@@ -10,7 +10,7 @@ function Header(){
                 </a>
                 <div className="flex gap-7 font-medium">
                     <a href="#">Home</a>
-                    <a href="#">About Us</a>
+                    <a href="#">About</a>
                     <a href="#">Contact Us</a>
                     <a href="#">Cart</a>
                 </div>
