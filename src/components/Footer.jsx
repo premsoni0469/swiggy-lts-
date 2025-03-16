@@ -7,26 +7,43 @@ import {
   FaPinterest,
   FaTwitter,
 } from "react-icons/fa";
+import { Link } from "react-router";
 
 function Footer() {
   return (
     <>
       <div className="md:flex shadow py-5">
-        <div className="flex items-center md:px-40 sm:justify-center">
-          <img src={Logo} alt="logo" className="w-28" />
-          <span className="font-bold md:text-3xl text-2xl">Smiggy</span>
-        </div>
+        <Link to="">
+          <div className="flex items-center md:px-40 sm:justify-center">
+            <img src={Logo} alt="logo" className="w-28" />
+            <span className="font-bold md:text-3xl text-2xl">Smiggy</span>
+          </div>
+        </Link>
         <div className="md:flex gap-20 align-middle text-gray-700 leading-8 sm:px-2 flex flex-wrap">
           <div>
             <ul>
               <li className="font-semibold text-black">Company</li>
-              <li>About us</li>
-              <li>Smiggy Corporate</li>
-              <li>Careers</li>
-              <li>Team</li>
-              <li>Smiggy Instagramart</li>
-              <li>Smiggy Dineout</li>
-              <li>Smiggy Genie</li>
+              <Link to="about">
+                <li>About</li>
+              </Link>
+              <Link to="smiggy-corporate">
+                <li>Smiggy Corporate</li>
+              </Link>
+              <Link to="careers">
+                <li>Careers</li>
+              </Link>
+              <Link to="team">
+                <li>Team</li>
+              </Link>
+              <Link to="smiggy-instamart">
+                <li>Smiggy Instagramart</li>
+              </Link>
+              <Link to="smiggy-dineout">
+                <li>Smiggy Dineout</li>
+              </Link>
+              <Link to="smiggy-genie">
+                <li>Smiggy Genie</li>
+              </Link>
             </ul>
           </div>
           <div>
