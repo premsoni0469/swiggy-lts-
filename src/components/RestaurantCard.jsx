@@ -1,21 +1,15 @@
 // import Pizza from '../assets/pizza.avif'
 import { IMG_URL } from "../constants/config";
+import { Link } from "react-router";
 
-function RestaurantCard({
-  name,
-  avgRating,
-  sla,
-  cuisines,
-  locality,
-  cloudinaryImageId,
-}) {
+function RestaurantCard({id, name, avgRating, sla, cuisines, locality, cloudinaryImageId,}) {
   // console.log(props) // This line should be commented if you are passing all the props as argument
 
   // const {name, rating, deliveryTime, cuisines, location} = props
 
   return (
     <>
-      <div className="w-[300px]">
+      <Link to={`/menu/${name.toLowerCase().replace(/\s+/g, "-")}/${id}`} className="w-[300px] hover:scale-95 transition-all">
         <div className="w-[300px] md:max-w-[275px] h-[150px]">
           {/* <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/7/16/c08ef470-8561-436d-81ec-b119dfc997fa_9862.jpg" alt="Pizza" className='w-full h-full object-cover rounded-[20px]' /> */}
           <img
@@ -69,7 +63,7 @@ function RestaurantCard({
           <p className="text-gray-600 px-2">{cuisines.join(", ")}</p>
           <p className="text-gray-600 px-2">{locality}</p>
         </div>
-      </div>
+      </Link>
     </>
   );
 }

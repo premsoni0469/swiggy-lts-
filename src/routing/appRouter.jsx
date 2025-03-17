@@ -5,6 +5,7 @@ import ContactUs from "../components/ContactUs";
 import Cart from "../components/Cart";
 import Body from "../components/Body";
 import ErrorPage from "../components/ErrorPage";
+import Menu from "../components/Menu";
 
 const appRouter = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "cart",
                 Component: Cart
+            },
+            {
+                path: '/menu/:name/:id',
+                Component: Menu
             }
         ],
         errorElement: <ErrorPage />
