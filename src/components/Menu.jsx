@@ -1,18 +1,17 @@
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { useParams } from "react-router";
+import RestaurantDetails from "./RestaurantDetails";
 
 const Menu = () => {
     const params = useParams();
     console.log("params", params);
 
-    const url = useRestaurantMenu(params?.id)
-    console.log("URL for menu data:", url)
-
-    // CONTINIUE FROM 23:00 Lecture 17 - Starting with Menu Component
+    const data = useRestaurantMenu(params?.id)
+    console.log("Data received from menu URL:", data)
 
     return(
         <>
-            This is menu component
+            <RestaurantDetails />
         </>
     );
 }
