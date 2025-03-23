@@ -14,7 +14,10 @@ const Menu = () => {
     // console.log(data?.title?.totalRatingsString)
     return(
         <>
-            <RestaurantBanner title={data?.title?.name} avgRating={data?.title?.avgRating} totalRatingsString={data?.title?.totalRatingsString} costForTwoMessage={data?.title?.costForTwoMessage} areaName={data?.title?.areaName} maxDeliveryTime={data?.title?.sla?.maxDeliveryTime} minDeliveryTime={data?.title?.sla?.minDeliveryTime}/>
+        <div className="w-10/12 mx-auto max-w-[800px]">
+
+            <RestaurantBanner title={data?.title?.name} avgRating={data?.title?.avgRating} totalRatingsString={data?.title?.totalRatingsString} costForTwoMessage={data?.title?.costForTwoMessage} areaName={data?.title?.areaName} maxDeliveryTime={data?.title?.sla?.maxDeliveryTime} minDeliveryTime={data?.title?.sla?.minDeliveryTime} discounts={data?.title?.aggregatedDiscountInfoV2?.descriptionList}/>
+        </div>
         </>
     );
 }

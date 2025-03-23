@@ -1,11 +1,26 @@
-const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessage, areaName, minDeliveryTime, maxDeliveryTime}) => {
+import { CircleChevronLeft, CircleChevronRight } from "lucide-react";
+
+const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessage, areaName, minDeliveryTime, maxDeliveryTime, discounts}) => {
+
+    const slideLeft = () => {
+        var slider = document.getElementById('slider')
+        slider.scrollLeft = slider.scrollLeft - 500;
+    }
+      
+    const slideRight = () => {
+        var slider = document.getElementById('slider')
+        slider.scrollLeft = slider.scrollLeft + 500;
+    }
+
+    console.log("Discounts: ", discounts)
+
     return (
         <>
-            <div className="mt-5 mx-80">
+            <div className="mt-5">
                 <p className="font-black text-3xl mx-5 py-8">{title}</p>
                 <div className="p-5 border border-t-0 rounded-[36px] bg-[linear-gradient(rgb(255,255,255)_-6.71%,rgb(235,235,242)_56.19%,rgb(223,223,231)_106.56%)]">
                     <div className="p-5 border rounded-3xl bg-white">
-                        <div className="flex items-center mx-4">
+                        <div className="flex items-center lg:mx-4">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                                 <circle cx="10" cy="10" r="9" fill="url(#StoreRating20_svg__paint0_linear_32982_71567)"></circle>
                                 <path
@@ -26,10 +41,10 @@ const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessa
                                 <span>{costForTwoMessage}</span>
                             </div> 
                         </div>
-                        <div className="flex mt-2 mx-4 text-orange-500 underline">
+                        <div className="flex mt-2 lg:mx-4 text-orange-500 underline">
                             Pizzas
                         </div>
-                        <div className="flex items-center mx-5 py-1">
+                        <div className="flex items-center lg:mx-5 py-1">
 
                             <div className="flex flex-col items-center">
                                 <div className="w-[7px] h-[7px] bg-[#c4c4c4] rounded-full"></div>
@@ -50,37 +65,32 @@ const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessa
                         </div>
                     </div>
                 </div>
-                <div className="mx-5 pt-8 pb-4">
-                    <p className="text-xl font-semibold">Deals for you</p>
+                <div className="font-bold flex justify-between lg:justify-between text-xl px-5 lg:mx-5 mt-10 mb-5">
+                    <p>Deals for you</p>
+                    <div className="flex lg:mx-14 gap-10">
+                    <button className="scale-150">
+                        <CircleChevronLeft className="bg-gray-200 rounded-xl" onClick={slideLeft}/>
+                    </button>
+                    <button className="scale-150">
+                        <CircleChevronRight className="bg-gray-200 rounded-xl" onClick={slideRight}/>
+                    </button>
+                    </div>
                 </div>
-                <div className="mx-5 pb-5 w-full flex flex-row overflow-x-auto custom-scrollbar scroll-smooth gap-3">
-                    <div className="flex gap-3 w-5/12 items-center justify-start border p-3 rounded-[20px]">
-                        <div>
-                            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day" className="w-12" alt="deal of the day" />
-                        </div>
-                        <div>
-                            <p className="font-semibold">Items at ₹189</p>
-                            <p className="text-gray-500">Ends in 24h: 00m</p>
-                        </div>
-                    </div>
-                    <div className="flex gap-3 w-5/12 items-center justify-start border p-3 rounded-[20px]">
-                        <div>
-                            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day" className="w-12" alt="deal of the day" />
-                        </div>
-                        <div>
-                            <p className="font-semibold">Items at ₹189</p>
-                            <p className="text-gray-500">Ends in 24h: 00m</p>
-                        </div>
-                    </div>
-                    <div className="flex gap-3 w-5/12 items-center justify-start border p-3 rounded-[20px]">
-                        <div>
-                            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day" className="w-12" alt="deal of the day" />
-                        </div>
-                        <div>
-                            <p className="font-semibold">Items at ₹189</p>
-                            <p className="text-gray-500">Ends in 24h: 00m</p>
-                        </div>
-                    </div>
+                
+                <div className="m-auto overflow-x-auto custom-scrollbar scroll-smooth pb-5" id="slider">
+                    <div className="flex flex-row gap-4 mx-5">
+
+                        {Array.isArray(discounts) && discounts.map((offer) => (
+                            <div className="lg:flex gap-4 w-[300px] border p-3 rounded-[20px]">
+                                <div>
+                                    <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day" className="w-5/12 lg:w-12" alt="deal of the day" />
+                                </div>
+                                <div>
+                                    <p className="font-semibold">{offer?.meta}</p>
+                                </div>
+                            </div> 
+                        ))} 
+                   </div>
                 </div>
             </div>
         </>
