@@ -3,16 +3,32 @@ import { generateMenuURL } from "../constants/config"
 
 const useRestaurantMenu = (id) => {
     const [menu, setMenu] = useState([])
+
+    const [resInfo, setResInfo] = useState([])
     const MENU_URL = generateMenuURL(id);
-    // Getting error, ie no proper URL generated from here, and to watch lecture 18
-    console.log("MENU_URL:",MENU_URL);
+    // console.log("MENU_URL:",MENU_URL);
     const getMenuDatafromAPI = async () => {
         try{
             const response = await fetch(MENU_URL);
             const data = await response.json()
             // console.log("Response", response);
-            // console.log("Data (JSON)", data);
-            setMenu(data)
+            console.log("Data (JSON)", data);
+            console.log("Restaurant Title: ", data?.data?.cards[0]?.card?.card?.text)
+            console.log("Restaurant Info: ", data?.data?.cards[2]?.card?.card?.info)
+
+            setResInfo(data?.data?.cards[2]?.card?.card?.info)
+
+            const resData = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
+
+            const filteredNormalData = resData.filter((item) => item?.card?.card?.['@type'] == 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory' )
+            const filteredNestedData = resData.filter((item) => item?.card?.card?.['@type'] == 'type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory' )
+
+            console.log("Filtered Normal Data:", filteredNormalData)
+            console.log("Filtered Nested Data:", filteredNestedData)
+            console.log("Raw Data: ", resData)
+
+            setMenu(data?.data?.cards)
         }
         catch(error){
             console.log("Error:", error)
@@ -22,7 +38,12 @@ const useRestaurantMenu = (id) => {
 
     useEffect(()=>{getMenuDatafromAPI()}, [])
     // console.log("Menu:", menu)
-    return menu;
+
+    const menuObject = {
+        title: resInfo,
+
+    }
+    return menuObject;
 }
 
 export default useRestaurantMenu
