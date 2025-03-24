@@ -12,7 +12,7 @@ const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessa
         slider.scrollLeft = slider.scrollLeft + 500;
     }
 
-    console.log("Discounts: ", discounts)
+    // console.log("Discounts: ", discounts)
 
     return (
         <>
@@ -80,8 +80,8 @@ const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessa
                 <div className="m-auto overflow-x-auto custom-scrollbar scroll-smooth pb-5" id="slider">
                     <div className="flex flex-row gap-4 mx-5">
 
-                        {Array.isArray(discounts) && discounts.map((offer) => (
-                            <div className="lg:flex gap-4 w-[300px] border p-3 rounded-[20px]">
+                        {Array.isArray(discounts) && discounts.map((offer, index) => (
+                            <div className="lg:flex gap-4 w-[300px] border p-3 rounded-[20px]" key={index}>
                                 <div>
                                     <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day" className="w-5/12 lg:w-12" alt="deal of the day" />
                                 </div>

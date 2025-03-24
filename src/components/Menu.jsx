@@ -1,6 +1,7 @@
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { useParams } from "react-router";
 import RestaurantBanner from "./RestaurantBanner";
+import CategoryContainer from "./CategoryContainer";
 
 const Menu = () => {
     const params = useParams();
@@ -9,6 +10,7 @@ const Menu = () => {
     const data = useRestaurantMenu(params?.id)
     console.log("Data received from menu URL (Menu Component):", data)
 
+    const {title, normalMenu, nestedMenu} = data
     
 
     // console.log(data?.title?.totalRatingsString)
@@ -16,7 +18,24 @@ const Menu = () => {
         <>
         <div className="w-10/12 mx-auto max-w-[800px]">
 
-            <RestaurantBanner title={data?.title?.name} avgRating={data?.title?.avgRating} totalRatingsString={data?.title?.totalRatingsString} costForTwoMessage={data?.title?.costForTwoMessage} areaName={data?.title?.areaName} maxDeliveryTime={data?.title?.sla?.maxDeliveryTime} minDeliveryTime={data?.title?.sla?.minDeliveryTime} discounts={data?.title?.aggregatedDiscountInfoV2?.descriptionList}/>
+            <RestaurantBanner 
+            title={title?.name} 
+            avgRating={title?.avgRating} 
+            totalRatingsString={title?.totalRatingsString} 
+            costForTwoMessage={title?.costForTwoMessage} 
+            areaName={title?.areaName} 
+            maxDeliveryTime={title?.sla?.maxDeliveryTime} 
+            minDeliveryTime={title?.sla?.minDeliveryTime} 
+            discounts={title?.aggregatedDiscountInfoV2?.descriptionList}/>
+
+            {
+                normalMenu.map(category => {
+                    return <CategoryContainer 
+                    categoryTitle={category?.card?.card?.title} 
+                    count={category?.card?.card?.itemCards.length} 
+                    collection={category?.card?.card?.itemCards}/> 
+                })
+            }
         </div>
         </>
     );
