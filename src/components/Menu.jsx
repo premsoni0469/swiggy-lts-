@@ -30,10 +30,17 @@ const Menu = () => {
 
             {
                 normalMenu.map(category => {
-                    return <CategoryContainer 
-                    categoryTitle={category?.card?.card?.title} 
-                    count={category?.card?.card?.itemCards.length} 
-                    collection={category?.card?.card?.itemCards}/> 
+                    return (
+                        <>
+                            <CategoryContainer 
+                                categoryTitle={category?.card?.card?.title} 
+                                count={category?.card?.card?.itemCards.length} 
+                                collection={category?.card?.card?.itemCards}
+                            /> 
+                            <div className="h-3 bg-gray-100"></div>
+
+                        </>
+                    )
                 })
             }
 
@@ -41,7 +48,7 @@ const Menu = () => {
                 nestedMenu.map(mainCategory => {
                     return(
                         <>
-                            <p className="font-bold text-xl pb-5">{mainCategory?.card?.card?.title}</p>
+                            <p className="font-bold text-xl py-6">{mainCategory?.card?.card?.title}</p>
                             {mainCategory?.card?.card?.categories.map(subCategory => (
                                 <CategoryContainer 
                                     categoryTitle={subCategory?.title}
@@ -50,6 +57,8 @@ const Menu = () => {
                                 
                                 />
                             ))}
+                            <div className="h-3 bg-gray-100"></div>
+
                         </>
                     )
                 })

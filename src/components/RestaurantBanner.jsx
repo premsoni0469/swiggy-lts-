@@ -17,7 +17,7 @@ const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessa
     return (
         <>
             <div className="mt-5">
-                <p className="font-black text-3xl mx-5 py-8">{title}</p>
+                <p className="font-bold text-3xl mx-5 py-8">{title}</p>
                 <div className="p-5 border border-t-0 rounded-[36px] bg-[linear-gradient(rgb(255,255,255)_-6.71%,rgb(235,235,242)_56.19%,rgb(223,223,231)_106.56%)]">
                     <div className="p-5 border rounded-3xl bg-white">
                         <div className="flex items-center lg:mx-4">
