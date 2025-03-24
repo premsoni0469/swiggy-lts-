@@ -15,10 +15,10 @@ const CategoryContainer = ({categoryTitle, count, collection}) => {
                             imgURL={foodItem?.card?.info?.imageId}
                             isVeg={foodItem?.card?.info?.isVeg}
                             title={foodItem?.card?.info?.name}
-                            price={foodItem?.card?.info?.defaultPrice/100}
-                            avgRating={foodItem?.card?.info?.ratings?.aggregatedRating?.rating}
-                            description={foodItem?.card?.info?.description}
-                            ratingCountV2={foodItem?.card?.info?.ratings?.aggregatedRating?.ratingCountV2}/>
+                            price={foodItem?.card?.info?.defaultPrice/100 || foodItem?.card?.info?.price/100}
+                            avgRating={foodItem?.card?.info?.ratings?.aggregatedRating?.rating || "Be the first one to try and review"}
+                            ratingCountV2={foodItem?.card?.info?.ratings?.aggregatedRating?.ratingCountV2 || "0"}
+                            description={foodItem?.card?.info?.description} />
                         })
                     }
                 </div>

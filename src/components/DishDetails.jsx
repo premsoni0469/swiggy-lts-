@@ -1,9 +1,13 @@
 import { DISH_IMG_URL } from "../constants/config"
+import { useState } from "react"
 const DishDetails = ({imgURL, isVeg, title, price, avgRating, description, ratingCountV2}) => {
+
+    const [showFullDescription, setShowFullDescription] = useState(false);
+
     return(
         <>
-            <div className="flex justify-between border-b pb-5">
-                <div>
+            <div className="flex justify-between border-b py-6">
+                <div className="w-9/12">
                     {
                         isVeg ? 
                         (<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -29,11 +33,13 @@ const DishDetails = ({imgURL, isVeg, title, price, avgRating, description, ratin
                         <p><span className="text-green-700 font-semibold">{avgRating}</span> ({ratingCountV2})</p>
                     </div>
                     <div>
-                        <p className="text-gray-700">{description}</p>
+                        {<span className="text-gray-700">{!showFullDescription ? description.split("").slice(0, 150).join("") : description}&nbsp;&nbsp;</span>}
+                        {description.length > 150 && <button onClick={()=> setShowFullDescription(!showFullDescription)}>{showFullDescription ? "...less" : "...more"}</button>}
+                        {/* To continue from lecture 20 => 34m : 00s */}
                     </div>
                 </div>
                 <div>
-                    <img src={DISH_IMG_URL + imgURL} className="rounded-lg" />
+                    <img src={DISH_IMG_URL + imgURL} className="rounded-2xl w-36 h-36 object-cover" />
                 </div>
             </div>
         </>

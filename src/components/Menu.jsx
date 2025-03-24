@@ -36,6 +36,24 @@ const Menu = () => {
                     collection={category?.card?.card?.itemCards}/> 
                 })
             }
+
+            {
+                nestedMenu.map(mainCategory => {
+                    return(
+                        <>
+                            <p className="font-bold text-xl pb-5">{mainCategory?.card?.card?.title}</p>
+                            {mainCategory?.card?.card?.categories.map(subCategory => (
+                                <CategoryContainer 
+                                    categoryTitle={subCategory?.title}
+                                    count={subCategory?.itemCards?.length}
+                                    collection={subCategory?.itemCards}
+                                
+                                />
+                            ))}
+                        </>
+                    )
+                })
+            }
         </div>
         </>
     );
