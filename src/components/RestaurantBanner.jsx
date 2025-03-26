@@ -45,7 +45,7 @@ const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessa
                             {   
                                 Array.isArray(cuisines) && cuisines.map((item, index) => {
                                     return(
-                                        <span className="text-orange-500 underline" key={index}>
+                                        <span className="text-orange-500" key={index}>
                                             {(index ? ", " : " ") + item}
                                         </span>
                                     )

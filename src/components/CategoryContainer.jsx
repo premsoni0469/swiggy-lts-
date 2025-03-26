@@ -22,7 +22,7 @@ const CategoryContainer = ({ categoryTitle, count, collection }) => {
           </div>
         </div>
         {isActive && ( // Conditionally render content if accordion is active
-          <div className="pl-5">
+          <div className="lg:pl-5">
             {collection.map((foodItem) => (
               <DishDetails
                 key={foodItem?.info?.id}

@@ -11,13 +11,13 @@ const DishDetails = ({imgURL, isVeg, title, price, avgRating, description, ratin
                     {
                         isVeg ? 
                         (<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3" y="3" width="18" height="18" rx="6" stroke="#007A4D" stroke-width="2" fill="white"/>
+                            <rect x="3" y="3" width="18" height="18" rx="6" stroke="#007A4D" strokeWidth="2" fill="white"/>
                             <circle cx="12" cy="12" r="5" fill="#007A4D"/>
                         </svg>)
                         : 
                         (<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3" y="3" width="18" height="18" rx="6" stroke="#D80027" stroke-width="2" fill="white"/>
-                            <path d="M12 8 L16 15 H8 Z" fill="#D80027" stroke="#D80027" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+                            <rect x="3" y="3" width="18" height="18" rx="6" stroke="#D80027" strokeWidth="2" fill="white"/>
+                            <path d="M12 8 L16 15 H8 Z" fill="#D80027" stroke="#D80027" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round"/>
                           </svg>)
                     }
 
@@ -32,10 +32,9 @@ const DishDetails = ({imgURL, isVeg, title, price, avgRating, description, ratin
                         </svg>
                         <p><span className="text-green-700 font-semibold">{avgRating}</span> ({ratingCountV2})</p>
                     </div>
-                    <div>
-                        {<span className="text-gray-700">{!showFullDescription ? description.split("").slice(0, 150).join("") : description}&nbsp;&nbsp;</span>}
-                        {description.length > 150 && <button onClick={()=> setShowFullDescription(!showFullDescription)}>{showFullDescription ? "...less" : "...more"}</button>}
-                        {/* To continue from lecture 20 => 34m : 00s */}
+                    <div className="text-gray-700 break-all mx-2">
+                        {!showFullDescription ? description.slice(0, 145) : description}{" "}
+                        {description.length > 145 && <button onClick={()=> setShowFullDescription(!showFullDescription)}>{showFullDescription ? "...less" : "...more"}</button>}
                     </div>
                 </div>
                 <div>

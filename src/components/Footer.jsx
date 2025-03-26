@@ -14,12 +14,12 @@ function Footer() {
     <>
       <div className="md:flex shadow py-5">
         <Link to="">
-          <div className="flex items-center md:px-40 sm:justify-center">
-            <img src={Logo} alt="logo" className="w-28" />
+          <div className="flex items-center pb-5 md:px-40">
+            <img src={Logo} alt="logo" className="xs:px-5 w-14 lg:w-24" />
             <span className="font-bold md:text-3xl text-2xl">Smiggy</span>
           </div>
         </Link>
-        <div className="md:flex gap-20 align-middle text-gray-700 leading-8 sm:px-2 flex flex-wrap">
+        <div className="md:flex gap-16 lg:gap-20 align-middle text-gray-700 leading-8 mx-8 flex flex-wrap">
           <div>
             <ul>
               <li className="font-semibold text-black">Company</li>
@@ -53,7 +53,7 @@ function Footer() {
               <li>Partner with us</li>
               <li>Ride with us</li>
               <li>
-                <ul className="font-semibold text-black pt-20">
+                <ul className="font-semibold text-black pt-5 lg:pt-14">
                   Legal
                   <li>Terms & Conditions</li>
                   <li>Cookie Policy</li>
@@ -73,7 +73,7 @@ function Footer() {
               <li>Pune</li>
               <li>Hyderabad</li>
               <li>Gurgaon</li>
-              <li>+600 cities</li>
+              <li>and +600 cities</li>
             </ul>
           </div>
           <div>
