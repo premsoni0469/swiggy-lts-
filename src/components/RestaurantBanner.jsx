@@ -1,6 +1,6 @@
 import { CircleChevronLeft, CircleChevronRight } from "lucide-react";
 
-const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessage, areaName, minDeliveryTime, maxDeliveryTime, discounts}) => {
+const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessage, cuisines, areaName, minDeliveryTime, maxDeliveryTime, discounts}) => {
 
     const slideLeft = () => {
         var slider = document.getElementById('slider')
@@ -41,8 +41,16 @@ const RestaurantBanner = ({title, avgRating, totalRatingsString, costForTwoMessa
                                 <span>{costForTwoMessage}</span>
                             </div> 
                         </div>
-                        <div className="flex mt-2 lg:mx-4 text-orange-500 underline">
-                            Pizzas
+                        <div className="flex mt-2 lg:mx-4">
+                            {   
+                                Array.isArray(cuisines) && cuisines.map((item, index) => {
+                                    return(
+                                        <span className="text-orange-500 underline" key={index}>
+                                            {(index ? ", " : " ") + item}
+                                        </span>
+                                    )
+                                })
+                            }
                         </div>
                         <div className="flex items-center lg:mx-5 py-1">
 

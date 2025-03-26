@@ -14,15 +14,18 @@ const Menu = () => {
     
 
     // console.log(data?.title?.totalRatingsString)
+    console.log("Cuisines: ", title?.cuisines)
     return(
         <>
         <div className="w-10/12 mx-auto max-w-[800px]">
 
             <RestaurantBanner 
+            key={title?.id}
             title={title?.name} 
             avgRating={title?.avgRating} 
             totalRatingsString={title?.totalRatingsString} 
             costForTwoMessage={title?.costForTwoMessage} 
+            cuisines={title?.cuisines}
             areaName={title?.areaName} 
             maxDeliveryTime={title?.sla?.maxDeliveryTime} 
             minDeliveryTime={title?.sla?.minDeliveryTime} 
