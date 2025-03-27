@@ -37,6 +37,10 @@ function CardContainer() {
 
   return (
     <>
+     <div>
+        <FoodItemsCarousel />
+      </div>
+
       <SearchBar resListForSearch={restaurantListForSearch} setResList={setRestaurantList} text={searchText} updateText={setSearchText}/>
 
       <div className="flex justify-around py-5 px-14">
@@ -84,10 +88,7 @@ function CardContainer() {
           </button>
         </div>
       </div>
-      <div>
-        <FoodItemsCarousel />
-      </div>
-
+    
       <div className="font-bold text-xl mx-16 lg:mx-36 md:mx-24 pb-2 mt-3">
         <p>Top restaurant chains:</p>
       </div>
