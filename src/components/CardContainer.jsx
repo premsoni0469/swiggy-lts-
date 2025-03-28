@@ -26,6 +26,14 @@ function CardContainer() {
     // console.log("Restaurant List:", restaurantList);
   };
 
+  let filterNearby = () => {
+    const filteredNearby = restaurantList.filter((restaurant) => {
+      return ["Ghatkopar", "Chembur", "Vidyavihar"].includes(restaurant?.info?.areaName);
+    });
+    setRestaurantList(filteredNearby);
+    console.log("Filtered Nearby: ", filteredNearby)
+  }
+
   if (errorMessage) {
     // means if there is an errorMessage, then only this block will run.
     return (
@@ -65,6 +73,7 @@ function CardContainer() {
             onClick={() => {
               if (activeButton === 'nearby') {
                 setActiveButton(null); // Deselect if already active
+                setRestaurantList(restaurantListForSearch);
               } else {
                 setActiveButton('nearby'); // Select if not active
                 filterNearby();
@@ -101,7 +110,7 @@ function CardContainer() {
               <ShimmerRestaurantCard />
             ) : (
               <h1>
-                There are no restaurants matching "{searchText}"
+                There are no restaurants matching your search
               </h1>
             )
           ) : 

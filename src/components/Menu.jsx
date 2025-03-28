@@ -5,6 +5,7 @@ import CategoryContainer from "./CategoryContainer";
 import { text } from "@fortawesome/fontawesome-svg-core";
 import { IoIosSearch } from "react-icons/io";
 import SearchBar from "./SearchBar";
+import ShimmerMenuPage from "./ShimmerMenuPage";
 
 const Menu = () => {
     const params = useParams();
@@ -18,7 +19,8 @@ const Menu = () => {
     console.log("Cuisines: ", title?.cuisines)
     return(
         <>
-        <div className="w-10/12 mx-auto max-w-[800px]">
+            {/* <ShimmerMenuPage /> */}
+            <div className="w-10/12 mx-auto max-w-[800px]">
 
             <RestaurantBanner 
             key={title?.id}
