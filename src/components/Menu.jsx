@@ -2,7 +2,6 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { useParams } from "react-router";
 import RestaurantBanner from "./RestaurantBanner";
 import CategoryContainer from "./CategoryContainer";
-import { text } from "@fortawesome/fontawesome-svg-core";
 import { IoIosSearch } from "react-icons/io";
 import SearchBar from "./SearchBar";
 import ShimmerMenuPage from "./ShimmerMenuPage";
@@ -18,9 +17,11 @@ const Menu = () => {
     
     console.log("Cuisines: ", title?.cuisines)
     return(
-        <>
-            {/* <ShimmerMenuPage /> */}
-            <div className="w-10/12 mx-auto max-w-[800px]">
+        <>{
+            title.length === 0 ?
+            (<ShimmerMenuPage />)
+            : 
+            (<div className="w-10/12 mx-auto max-w-[800px]">
 
             <RestaurantBanner 
             key={title?.id}
@@ -92,7 +93,9 @@ const Menu = () => {
                     )
                 })
             }
-        </div>
+        </div>)
+            
+        }
         </>
     );
 }
