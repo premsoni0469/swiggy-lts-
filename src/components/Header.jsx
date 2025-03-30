@@ -23,8 +23,8 @@ function Header() {
 
     return (
         <>
-            <nav className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "p-3 mx-4 translate-y-2" : ""}`}>
-                <div className="bg-gray-100/80 backdrop-blur-2xl z-50 rounded-lg flex justify-between shadow-md items-center xl:px-36 lg:px-30 md:px-14 px-5 py-4">
+            <nav className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled ? "p-3 mx-4 translate-y-2" : ""}`}>
+                <div className="bg-gray-100/80 backdrop-blur-2xl z-40 rounded-lg flex justify-between shadow-md items-center xl:px-36 lg:px-30 md:px-14 px-5 py-4">
                     <div className="flex items-center gap-9">
                         <Link className="flex items-center" to="/">
                             <img src={Logo} alt="logo" className="w-16" />

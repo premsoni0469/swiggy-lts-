@@ -8,8 +8,10 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { Link } from "react-router";
+import useOnline from "../utils/useOnline";
 
 function Footer() {
+  let onlineStatus = useOnline();
   return (
     <>
       <div className="md:flex shadow py-5">
@@ -107,6 +109,13 @@ function Footer() {
             </ul>
           </div>
         </div>
+      </div>
+      <div className="h-8">
+        <p className="text-center">
+        {
+          onlineStatus ? ("You are 🟢Online. You can access all of our services") : ("You are 🔴Offline. You can't access our services, kindly check your internet connection and try again")
+        }
+        </p>
       </div>
     </>
   );
