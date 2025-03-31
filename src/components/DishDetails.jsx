@@ -6,7 +6,7 @@ const DishDetails = ({imgURL, isVeg, title, price, avgRating, description, ratin
 
     return(
         <>
-            <div className="flex justify-between border-b py-6">
+            <div className="flex justify-between border-b py-10 pb-14">
                 <div className="w-9/12">
                     {
                         isVeg ? 
@@ -37,8 +37,13 @@ const DishDetails = ({imgURL, isVeg, title, price, avgRating, description, ratin
                         {description.length > 145 && <button onClick={()=> setShowFullDescription(!showFullDescription)}>{showFullDescription ? "...less" : "...more"}</button>}
                     </div>
                 </div>
-                <div>
-                    <img src={DISH_IMG_URL + imgURL} className="rounded-2xl w-36 h-36 object-cover" />
+                <div className="relative">
+                    <div>
+                        <img src={DISH_IMG_URL + imgURL} className="rounded-2xl w-40 h-40 object-cover" />
+                    </div>
+                    <div className="absolute bottom-16 right-1 md:right-5 md:-bottom-[12px]">
+                        <button className="text-green-600 bg-white px-11 font-bold py-2 border-1 shadow-xl border-green-600 rounded-lg hover:bg-green-600 hover:text-white transition-colors ease-in-out">ADD</button>
+                    </div>
                 </div>
             </div>
         </>

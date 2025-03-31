@@ -48,7 +48,7 @@ const Menu = () => {
             </div>
 
             <div className="relative flex justify-center my-3">
-                <input type="text" className="bg-gray-100 w-full h-11 px-4 rounded-xl" placeholder="Search for dishes"/>
+                <input type="text" className="bg-gray-100 w-full h-11 px-4 rounded-xl focus:outline focus:outline-gray-300" placeholder="Search for dishes"/>
                 <button className="absolute right-3 top-1/2 -translate-y-1/2 text-2xl">
                     <IoIosSearch className="text-gray-600"/>
                 </button>
