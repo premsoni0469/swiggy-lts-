@@ -34,6 +34,14 @@ function CardContainer() {
     console.log("Filtered Nearby: ", filteredNearby)
   }
 
+  let filterPureVeg = () => {
+    const filteredPureVeg = restaurantList.filter((restaurant) => {
+      return restaurant?.info?.veg == true;
+    })
+    setRestaurantList(filteredPureVeg);
+    console.log("Filtered Pure Veg: ", filteredPureVeg)
+  }
+
   if (errorMessage) {
     // means if there is an errorMessage, then only this block will run.
     return (
@@ -83,17 +91,18 @@ function CardContainer() {
             Nearby
           </button>
           <button
-            className={`bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors ${activeButton === 'budgetFriendly' ? 'bg-gray-300 text-gray-700' : ''}`}
+            className={`bg-gray-100 text-gray-500 p-3 rounded-[30px] hover:bg-gray-200 hover:text-gray-800 transition-colors ${activeButton === 'pure_veg' ? 'bg-gray-300 text-gray-700' : ''}`}
             onClick={() => {
-              if (activeButton === 'budgetFriendly') {
+              if (activeButton === 'pure_veg') {
                 setActiveButton(null); // Deselect if already active
+                setRestaurantList(restaurantListForSearch);
               } else {
-                setActiveButton('budgetFriendly'); // Select if not active
-                filterBudgetFriendly();
+                setActiveButton('pure_veg'); // Select if not active
+                filterPureVeg();
               }
             }}
           >
-            Budget Friendly
+            Pure Veg
           </button>
         </div>
       </div>
